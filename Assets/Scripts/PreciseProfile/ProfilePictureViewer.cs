@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImageViewer : MonoBehaviour {
+public class ProfilePictureViewer : MonoBehaviour {
 
 	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
 

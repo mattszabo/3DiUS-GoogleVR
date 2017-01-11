@@ -47,6 +47,7 @@ public class MoveableObject : MonoBehaviour {
 	private void FollowPointer() {
 		Ray ray = new Ray (pointer.transform.position, pointer.transform.forward);
 		transform.position = ray.GetPoint (7.0f);
+		transform.LookAt (GameObject.Find("Main Camera").transform);
 	}
 
 	private void CalculateObjectVelocity() {
