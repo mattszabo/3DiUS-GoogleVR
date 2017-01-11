@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProfilePictureViewer : MonoBehaviour {
+public class PreciseProfileAPI : MonoBehaviour {
 
 	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
 
@@ -18,8 +18,10 @@ public class ProfilePictureViewer : MonoBehaviour {
 		www = new WWW (ppm.photo_url);
 		yield return www;
 
-		// apply the downloaded image as a texture
-		Renderer renderer = GetComponent<Renderer>();
-		renderer.material.mainTexture = www.texture;
+		// apply the downloaded image to the profile picture as a texture
+		GameObject profilePicture = GameObject.Find("ProfilePicture");
+		profilePicture.GetComponent<Renderer> ().material.mainTexture = www.texture;
+//		Renderer renderer = GetComponent<Renderer>();
+//		renderer.material.mainTexture = www.texture;
 	}
 }
