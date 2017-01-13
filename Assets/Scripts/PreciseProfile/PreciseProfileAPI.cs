@@ -6,6 +6,10 @@ public class PreciseProfileAPI : MonoBehaviour {
 
 	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
 
+	private enum PreciseProfileSections {
+		ProfileName, ProfileTitle, ProfilePicture, ProfileBio
+	};
+
 	IEnumerator Start() {
 
 		// get json from api
@@ -21,18 +25,21 @@ public class PreciseProfileAPI : MonoBehaviour {
 
 		SetProfilePicture (www.texture);
 
-		SetProfileObjectText (ppm.name, "ProfileName");
-		SetProfileObjectText (ppm.title, "ProfileTitle");
+		SetProfileObjectText (ppm.name, PreciseProfileSections.ProfileName.ToString());
+		SetProfileObjectText (ppm.title, PreciseProfileSections.ProfileTitle.ToString());
 		string bioString = ppm.bio.Substring(0, 265);
 		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
-		SetProfileObjectText (bioString, "ProfileBio");
+		SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
 
 	}
 
 	// apply the downloaded image to the profile picture as a texture
 	private void SetProfilePicture(Texture2D tex) {
-		GameObject profilePicture = GameObject.Find("ProfilePicture");
+		GameObject profilePicture = GameObject.Find(PreciseProfileSections.ProfilePicture.ToString());
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
+
+		GameObject testCard = GameObject.Find("TestCard");
+		testCard.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 
 	private void SetProfileObjectText(string objectText, string objectLabel) {
