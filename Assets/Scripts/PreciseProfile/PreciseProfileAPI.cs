@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Text.RegularExpressions;
+using System;
 public class PreciseProfileAPI : MonoBehaviour {
 
 	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
@@ -18,10 +19,24 @@ public class PreciseProfileAPI : MonoBehaviour {
 		www = new WWW (ppm.photo_url);
 		yield return www;
 
-		// apply the downloaded image to the profile picture as a texture
+		SetProfilePicture (www.texture);
+
+		SetProfileObjectText (ppm.name, "ProfileName");
+		SetProfileObjectText (ppm.title, "ProfileTitle");
+		string bioString = ppm.bio.Substring(0, 265);
+		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
+		SetProfileObjectText (bioString, "ProfileBio");
+
+	}
+
+	// apply the downloaded image to the profile picture as a texture
+	private void SetProfilePicture(Texture2D tex) {
 		GameObject profilePicture = GameObject.Find("ProfilePicture");
-		profilePicture.GetComponent<Renderer> ().material.mainTexture = www.texture;
-//		Renderer renderer = GetComponent<Renderer>();
-//		renderer.material.mainTexture = www.texture;
+		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
+	}
+
+	private void SetProfileObjectText(string objectText, string objectLabel) {
+		GameObject profileBio = GameObject.Find (objectLabel);
+		profileBio.GetComponent<TextMesh> ().text = objectText;
 	}
 }
