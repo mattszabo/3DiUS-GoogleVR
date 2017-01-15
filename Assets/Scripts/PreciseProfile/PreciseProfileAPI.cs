@@ -37,9 +37,6 @@ public class PreciseProfileAPI : MonoBehaviour {
 	private void SetProfilePicture(Texture2D tex) {
 		GameObject profilePicture = GameObject.Find(PreciseProfileSections.ProfilePicture.ToString());
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
-
-//		GameObject testCard = GameObject.Find("TestCard");
-//		testCard.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 
 	private void SetProfileObjectText(string objectText, string objectLabel) {
