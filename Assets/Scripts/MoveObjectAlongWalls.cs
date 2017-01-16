@@ -10,7 +10,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	public PointerType pointerType;
 
 	private GameObject pointer;
-	private GameObject currentWall;
+	private GameObject alignedWall;
 
 	private bool isPickedUp;
 	private bool isGravityEnabled;
@@ -20,6 +20,8 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
+
+	int objectLayerMask = 1 << 8;
 
 	GameObject[] walls;
 
@@ -31,6 +33,8 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		isGravityEnabled = (rb) ? rb.useGravity : false;
 
 		walls = GameObject.FindGameObjectsWithTag("Wall");
+
+		objectLayerMask = ~objectLayerMask;
 	}
 		
 	void Update () {
@@ -52,26 +56,56 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		if (isGravityEnabled) {
 			ApplyMomentumToObject ();
 		}
-		currentWall = null;
 	}
 
 	private void FollowPointerAlongWall() {
 
 		Ray pointerRay = new Ray (pointer.transform.position, pointer.transform.forward);
-		RaycastHit hit;
+		RaycastHit hit = GetHitOfObjectBeingPointerAt (pointerRay);
 
-		// Movement of object isn't fluid because Raycast doesn't go through the object to the wall.
-		// So it only moves the object along the wall in spaces of width/2 or height/2
-		if (Physics.Raycast (pointerRay, out hit, 40.0f)) {
-			foreach (GameObject wall in walls) {
-				if (hit.collider.gameObject == wall) {
-					currentWall = wall;
-					transform.position = pointerRay.GetPoint (Vector3.Distance (pointerRay.origin, hit.point));
-					transform.forward = currentWall.transform.forward;
-					transform.right = -currentWall.transform.right;
-				}
+		// ignore the picked up object being hit so we can check for wall collisions
+		if(IsObjectAlignedToAWall()) {
+			bool ignorePickedUpObject = true;
+			hit = GetHitOfObjectBeingPointerAt(pointerRay, ignorePickedUpObject);
+		}
+			
+		foreach (GameObject wall in walls) {
+			if (IsAWallTagHit (hit, wall)) {
+				AlignObjectToWall (wall, pointerRay, hit.point);
+				UpdateObjectPosition (pointerRay, hit.point);
 			}
 		}
+	}
+
+	private RaycastHit GetHitOfObjectBeingPointerAt(Ray pointerRay, bool ignorePickedUpObject = false) {
+		RaycastHit hit;
+		if (ignorePickedUpObject) {
+			Physics.Raycast (pointerRay, out hit, 40.0f, objectLayerMask);
+		} else {
+			Physics.Raycast (pointerRay, out hit, 40.0f);
+		}
+
+		return hit;
+	}
+
+	private bool IsObjectAlignedToAWall() {
+		return alignedWall ? true : false;
+	}
+
+	private void UpdateObjectPosition(Ray pointerRay, Vector3 point) {
+		transform.position = pointerRay.GetPoint (Vector3.Distance (pointerRay.origin, point));
+	}
+
+
+	private void AlignObjectToWall(GameObject wall, Ray pointerRay, Vector3 point) {
+		alignedWall = wall;
+
+		transform.forward = alignedWall.transform.forward;
+		transform.right = -alignedWall.transform.right;
+	}
+
+	private bool IsAWallTagHit(RaycastHit hit, GameObject wall) {
+		return hit.collider.gameObject == wall;
 	}
 
 	private void CalculateObjectVelocity() {
