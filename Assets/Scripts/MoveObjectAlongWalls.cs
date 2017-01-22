@@ -21,9 +21,9 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
 
-	// layer mask to select any object with layer set to HangsOnWall (edit -> project settings -> tags & layers)
-	int layerHangsOnWall = 1 << 8;
-	int allLayersExceptHangsOnWall;
+	// layer mask to select any object with layer set to PickedUpObject (edit -> project settings -> tags & layers)
+	int layerPickedUpObject = 1 << 8;
+	int allLayersExceptPickedUpObject;
 
 	GameObject[] walls;
 
@@ -31,13 +31,11 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		isPickedUp = false;
 		isPositionOnWallInitialised = false;
 		pointer = GameObject.Find (pointerType.ToString());
-//		rb = GetComponent<Rigidbody> ();
-//		isGravityEnabled = (rb) ? rb.useGravity : false;
 
 		walls = GameObject.FindGameObjectsWithTag("Wall");
 
-		// layer mask to select any object except those with layer set to HangsOnWall
-		allLayersExceptHangsOnWall = ~layerHangsOnWall;
+		// layer mask to select any object except those with layer set to PickedUpObject
+		allLayersExceptPickedUpObject = ~layerPickedUpObject;
 	}
 		
 	void Update () {
@@ -83,7 +81,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private RaycastHit GetHitOfObjectBeingPointedAt(Ray pointerRay, bool ignorePickedUpObject = false) {
 		RaycastHit hit;
 		if (ignorePickedUpObject) {
-			Physics.Raycast (pointerRay, out hit, 140.0f, allLayersExceptHangsOnWall);
+			Physics.Raycast (pointerRay, out hit, 140.0f, allLayersExceptPickedUpObject);
 		} else {
 			Physics.Raycast (pointerRay, out hit, 140.0f);
 		}
