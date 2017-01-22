@@ -103,10 +103,13 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private void AlignObjectToWall(GameObject wall, Ray pointerRay, Vector3 point) {
 		if (alignedWall != wall) {
 			alignedWall = wall;
-			
-			transform.forward = alignedWall.transform.forward;
-			transform.right = -alignedWall.transform.right;
-			transform.rotation.Set (transform.rotation.x, alignedWall.transform.rotation.y, transform.rotation.y, transform.rotation.w);
+
+			transform.right = alignedWall.transform.right;
+
+			if(transform.rotation != alignedWall.transform.rotation) {
+				Quaternion w = alignedWall.transform.rotation;
+				transform.rotation.Set (w.x, w.y, w.z, w.w);
+			}
 		}
 	}
 
