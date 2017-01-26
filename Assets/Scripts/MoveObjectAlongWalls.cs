@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Moveable {
-	public enum PointerType { GvrReticlePointer, GvrControllerPointer };	
-}
-
 public class MoveObjectAlongWalls : MonoBehaviour {
 
-	public PointerType pointerType;
+	public Material defaultMat;
+	public Material selectedMat;
+	public Material movingMat;
 
-	private GameObject pointer;
+	private GameObject laserPointer;
 	private GameObject alignedWall;
 
+	private bool isPointedAt;
 	private bool isPickedUp;
-	private bool isGravityEnabled;
 	private bool isPositionOnWallInitialised;
-
-	private Rigidbody rb;
 
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
@@ -30,7 +26,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	void Start () {
 		isPickedUp = false;
 		isPositionOnWallInitialised = false;
-		pointer = GameObject.Find (pointerType.ToString());
+		laserPointer = GameObject.Find ("Laser");
 
 		walls = GameObject.FindGameObjectsWithTag("Wall");
 
@@ -39,11 +35,16 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 		
 	void Update () {
+		if (GvrController.ClickButtonDown && isPointedAt) {
+			isPickedUp = true;
+		}
+		if (GvrController.ClickButtonUp) {
+			isPickedUp = false;
+//			GetComponent<Renderer> ().material = defaultMat;
+		}
 		if (isPickedUp) {
+//			GetComponent<Renderer> ().material = selectedMat;
 			FollowPointerAlongWall ();
-			if (isGravityEnabled) {
-				CalculateObjectVelocity ();
-			}
 		}
 	}
 
@@ -51,29 +52,24 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		isPickedUp = true;
 	}
 
-	public void LetGoOfObject() {
-		isPickedUp = false;
-		isPositionOnWallInitialised = false;
-		if (isGravityEnabled) {
-			ApplyMomentumToObject ();
-		}
-	}
-
 	private void FollowPointerAlongWall() {
 
-		Ray pointerRay = new Ray (pointer.transform.position, pointer.transform.forward);
-		RaycastHit hit = GetHitOfObjectBeingPointedAt (pointerRay);
+		Vector3 v = GvrController.Orientation * Vector3.forward;
+
+		Ray laserPointerRay = new Ray (laserPointer.transform.position, v);
+//		Ray pointerRay = new Ray (v, pointer.transform.forward);
+		RaycastHit hit = GetHitOfObjectBeingPointedAt (laserPointerRay);
 
 		// ignore the picked up object being hit so we can check for wall collisions
 		if(IsObjectAlignedToAWall()) {
 			bool ignorePickedUpObject = true;
-			hit = GetHitOfObjectBeingPointedAt(pointerRay, ignorePickedUpObject);
+			hit = GetHitOfObjectBeingPointedAt(laserPointerRay, ignorePickedUpObject);
 		}
 			
 		foreach (GameObject wall in walls) {
 			if (IsAWallTagHit (hit, wall)) {
-				AlignObjectToWall (wall, pointerRay, hit.point);
-				UpdateObjectPosition (pointerRay, hit.point);
+				AlignObjectToWall (wall, laserPointerRay, hit.point);
+				UpdateObjectPositionToHitPoint (laserPointerRay, hit.point);
 			}
 		}
 	}
@@ -93,7 +89,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		return alignedWall ? true : false;
 	}
 
-	private void UpdateObjectPosition(Ray pointerRay, Vector3 point) {
+	private void UpdateObjectPositionToHitPoint(Ray pointerRay, Vector3 point) {
 		transform.position = pointerRay.GetPoint (Vector3.Distance (pointerRay.origin, point));
 	}
 
@@ -114,20 +110,15 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private bool IsAWallTagHit(RaycastHit hit, GameObject wall) {
 		return hit.collider.gameObject == wall;
 	}
-
-	private void CalculateObjectVelocity() {
-		objectVelocity = (transform.position - objectLastPosition) / Time.fixedDeltaTime;
-		objectLastPosition = transform.position;
+		
+	public void SetPointedAt() {
+		isPointedAt = true;
+//		GetComponent<Renderer> ().material = selectedMat;
 	}
 
-	private void ApplyMomentumToObject() {
-		float velocityMultiplier = 2.0f;
-		rb.AddForce (
-			objectVelocity.x * velocityMultiplier,
-			objectVelocity.y * velocityMultiplier,
-			objectVelocity.z * velocityMultiplier,
-			ForceMode.Force
-		);
+	public void SetUnpointedAt() {
+		isPointedAt = false;
+//		GetComponent<Renderer> ().material = defaultMat;
 	}
 		
 }
