@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.EventSystems;
 
 public class MoveObjectAlongWalls : MonoBehaviour {
 
@@ -18,7 +18,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private Vector3 objectVelocity;
 
 	// layer mask to select any object with layer set to PickedUpObject (edit -> project settings -> tags & layers)
-	int layerPickedUpObject = 1 << 8;
+	readonly int layerPickedUpObject = 1 << 8;
 	int allLayersExceptPickedUpObject;
 
 	GameObject[] walls;
@@ -35,15 +35,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 		
 	void Update () {
-		if (GvrController.ClickButtonDown && isPointedAt) {
-			isPickedUp = true;
-		}
-		if (GvrController.ClickButtonUp) {
-			isPickedUp = false;
-//			GetComponent<Renderer> ().material = defaultMat;
-		}
 		if (isPickedUp) {
-//			GetComponent<Renderer> ().material = selectedMat;
 			FollowPointerAlongWall ();
 		}
 	}
@@ -54,10 +46,8 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 
 	private void FollowPointerAlongWall() {
 
-		Vector3 v = GvrController.Orientation * Vector3.forward;
-
-		Ray laserPointerRay = new Ray (laserPointer.transform.position, v);
-//		Ray pointerRay = new Ray (v, pointer.transform.forward);
+        Vector3 controllerOffset = new Vector3(0.0f, 1.65f, 0.0f);
+        Ray laserPointerRay = new Ray (laserPointer.transform.position - controllerOffset, laserPointer.transform.forward);
 		RaycastHit hit = GetHitOfObjectBeingPointedAt (laserPointerRay);
 
 		// ignore the picked up object being hit so we can check for wall collisions
@@ -68,11 +58,19 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 			
 		foreach (GameObject wall in walls) {
 			if (IsAWallTagHit (hit, wall)) {
-				AlignObjectToWall (wall, laserPointerRay, hit.point);
+				AlignObjectToWall (wall, hit.point);
 				UpdateObjectPositionToHitPoint (laserPointerRay, hit.point);
 			}
 		}
 	}
+
+    public void FollowPointer() {
+        isPickedUp = true;
+    }
+
+    public void UnfollowPointer(){
+        isPickedUp = false;
+    }
 
 	private RaycastHit GetHitOfObjectBeingPointedAt(Ray pointerRay, bool ignorePickedUpObject = false) {
 		RaycastHit hit;
@@ -86,24 +84,30 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 
 	private bool IsObjectAlignedToAWall() {
-		return alignedWall ? true : false;
+		return this.alignedWall ? true : false;
 	}
 
 	private void UpdateObjectPositionToHitPoint(Ray pointerRay, Vector3 point) {
-		transform.position = pointerRay.GetPoint (Vector3.Distance (pointerRay.origin, point));
+        float distance = Vector3.Distance(pointerRay.origin, point);
+        float objectDepth = transform.localScale.z;
+        transform.position = pointerRay.GetPoint (distance - objectDepth);
 	}
 
 
-	private void AlignObjectToWall(GameObject wall, Ray pointerRay, Vector3 point) {
-		if (alignedWall != wall) {
-			alignedWall = wall;
+	private void AlignObjectToWall(GameObject wall, Vector3 point) {
+		if (this.alignedWall != wall) {
+            this.alignedWall = wall;
 
-			transform.right = alignedWall.transform.right;
+			transform.right = this.alignedWall.transform.right;
 
-			if(transform.rotation != alignedWall.transform.rotation) {
-				Quaternion w = alignedWall.transform.rotation;
-				transform.rotation.Set (w.x, w.y, w.z, w.w);
-			}
+            Quaternion alignedWallRotation = this.alignedWall.transform.rotation;
+
+            if (transform.rotation != alignedWallRotation) {
+				Quaternion w = alignedWallRotation;
+                transform.rotation.Set(w.x, w.y, w.z, w.w);
+                //transform.rotation = alignedWallRotation;
+
+            }
 		}
 	}
 
@@ -113,12 +117,10 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		
 	public void SetPointedAt() {
 		isPointedAt = true;
-//		GetComponent<Renderer> ().material = selectedMat;
 	}
 
 	public void SetUnpointedAt() {
 		isPointedAt = false;
-//		GetComponent<Renderer> ().material = defaultMat;
 	}
 		
 }
