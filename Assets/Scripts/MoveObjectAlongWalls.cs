@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MoveObjectAlongWalls : MonoBehaviour {
@@ -8,7 +9,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	public Material movingMat;
 
 	private GameObject laserPointer;
-	private GameObject alignedWall;
+	private GameObject currentWall;
 
 	private bool isPointedAt;
 	private bool isPickedUp;
@@ -17,16 +18,64 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
 
+	enum ObjectStates
+	{
+		NONE,
+		PICKED_UP,
+		UPDATE_OBJECT_POSITION,
+        AT_WALL_EDGE
+    }
+
+	ObjectStates objectState;
+
 	// layer mask to select any object with layer set to PickedUpObject (edit -> project settings -> tags & layers)
 	readonly int layerPickedUpObject = 1 << 8;
 	int allLayersExceptPickedUpObject;
 
 	GameObject[] walls;
 
+	void OnEnable()
+	{
+		WallCollision.OnEnter += WallDetection;
+		WallCollision.OnExit += NotPointingAtWall;
+	}
+
+	void OnDisable()
+	{
+		WallCollision.OnEnter -= WallDetection;
+		WallCollision.OnExit -= NotPointingAtWall;
+	}
+
+	void WallDetection(GameObject wall)
+	{
+		// switch(objectState) {
+		// 	case ObjectStates.PICKED_UP:
+		// 		if (wall != currentWall) {
+		// 			AlignObjectToWall(wall);
+		// 			SetCurrentWall(wall);
+		// 		}
+		// 		FollowPointerAlongWall ();
+		// 		break;
+		// 	default:
+		// 		break;
+		// }
+		Debug.Log("OMG WALL!");
+		if (wall != this.currentWall) {
+			this.currentWall = wall;
+		}
+	}
+
+    void NotPointingAtWall(GameObject gameObject)
+	{
+		Debug.Log("no wall");
+		objectState = ObjectStates.AT_WALL_EDGE;  
+	}
+
 	void Start () {
 		isPickedUp = false;
 		isPositionOnWallInitialised = false;
 		laserPointer = GameObject.Find ("Laser");
+		objectState = ObjectStates.NONE;
 
 		walls = GameObject.FindGameObjectsWithTag("Wall");
 
@@ -35,8 +84,21 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 		
 	void Update () {
+
+		switch (objectState) {
+			case ObjectStates.NONE:
+				break;
+			case ObjectStates.AT_WALL_EDGE:
+				break;
+			case ObjectStates.PICKED_UP:
+				Debug.Log("PICKED UP, YOOOOO!");
+				break;
+			default:
+				break;
+		}
+
 		if (isPickedUp) {
-			FollowPointerAlongWall ();
+			
 		}
 	}
 
@@ -51,17 +113,20 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		RaycastHit hit = GetHitOfObjectBeingPointedAt (laserPointerRay);
 
 		// ignore the picked up object being hit so we can check for wall collisions
-		if(IsObjectAlignedToAWall()) {
-			bool ignorePickedUpObject = true;
-			hit = GetHitOfObjectBeingPointedAt(laserPointerRay, ignorePickedUpObject);
-		}
+		// if(isPickedUp) {
+		bool ignorePickedUpObject = true;
+		hit = GetHitOfObjectBeingPointedAt(laserPointerRay, ignorePickedUpObject);
+		// }
 			
-		foreach (GameObject wall in walls) {
-			if (IsAWallTagHit (hit, wall)) {
-				AlignObjectToWall (wall, hit.point);
-				UpdateObjectPositionToHitPoint (laserPointerRay, hit.point);
-			}
-		}
+		// if (updatePosition) {
+//			UpdateObjectPositionToHitPoint (laserPointerRay, hit.point);
+		// }
+
+//		foreach (GameObject wall in walls) {
+//			if (IsAWallTagHit (hit, wall)) {
+////				AlignObjectToWall (wall);
+//			}
+//		}
 	}
 
     public void FollowPointer() {
@@ -84,7 +149,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 
 	private bool IsObjectAlignedToAWall() {
-		return this.alignedWall ? true : false;
+		return this.currentWall ? true : false;
 	}
 
 	private void UpdateObjectPositionToHitPoint(Ray pointerRay, Vector3 point) {
@@ -94,13 +159,13 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 
 
-	private void AlignObjectToWall(GameObject wall, Vector3 point) {
-		if (this.alignedWall != wall) {
-            this.alignedWall = wall;
+	private void AlignObjectToWall(GameObject wall) {
+		if (this.currentWall != wall) {
+            this.currentWall = wall;
 
-			transform.right = this.alignedWall.transform.right;
+			transform.right = this.currentWall.transform.right;
 
-            Quaternion alignedWallRotation = this.alignedWall.transform.rotation;
+            Quaternion alignedWallRotation = this.currentWall.transform.rotation;
 
             if (transform.rotation != alignedWallRotation) {
 				Quaternion w = alignedWallRotation;
@@ -122,5 +187,12 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	public void SetUnpointedAt() {
 		isPointedAt = false;
 	}
-		
+
+	public void setPickedUp() {
+		objectState = ObjectStates.PICKED_UP;
+	}	
+
+	public void setNone() {
+		objectState = ObjectStates.NONE;
+	}
 }
