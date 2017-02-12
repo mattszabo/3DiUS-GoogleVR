@@ -27,6 +27,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 
 	// layer mask to select any object with layer set to PickedUpObject (edit -> project settings -> tags & layers)
 	readonly int layerPickedUpObject = 1 << 8;
+	readonly int layerWall = 1 << 10;
 	int allLayersExceptPickedUpObject;
 
 	void OnEnable() {
@@ -54,9 +55,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 				break;
 			case ObjectStates.PICKED_UP:
 			 	Profiler.BeginSample("--> PICKED_UP sample");
-				if(isPointerPointingAtWall) {
-					FollowPointerAlongWall();
-				}
+				FollowPointerAlongWall();
 				Profiler.EndSample();
 				break;
 			case ObjectStates.NOT_PICKED_UP:
@@ -72,14 +71,11 @@ public class MoveObjectAlongWalls : MonoBehaviour {
         Ray laserPointerRay = new Ray (laserPointer.transform.position + controllerOffset, laserPointer.transform.forward);
 		RaycastHit objectBehindPickedUpObject;
 
-		if(Physics.Raycast (laserPointerRay, out objectBehindPickedUpObject, 140.0f, allLayersExceptPickedUpObject) &&
+		if(Physics.Raycast (laserPointerRay, out objectBehindPickedUpObject, 140.0f, layerWall) &&
 				objectBehindPickedUpObject.collider.CompareTag("Wall")) {
 			UpdateObjectPositionToHitPoint (laserPointerRay, objectBehindPickedUpObject.point);
+			//Check for new wall to re-align here. Only if I can't update to point through this object when hoevering over new wall.
 		}
-	}
-
-	private bool IsObjectAlignedToAWall() {
-		return this.currentWall ? true : false;
 	}
 
 	private void UpdateObjectPositionToHitPoint(Ray pointerRay, Vector3 point) {
@@ -89,27 +85,30 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 
 
+	// If picking up na object, this only gets called on a new wall if the
+	// pointer is not aiming at this object being picked up
 	private void PointingAtWall(GameObject wall) {
-		isPointerPointingAtWall = true;
-		
-		if (this.currentWall != wall) {
+		if(objectState == ObjectStates.PICKED_UP) {
+			isPointerPointingAtWall = true;
 			AlignObjectToWall(wall);
 		}
 	}
 
-	public void AlignObjectToWall(GameObject wall) {
-		transform.right = wall.transform.right;
-
-		Quaternion alignedWallRotation = wall.transform.rotation;
-		if (transform.rotation != alignedWallRotation) {
-			Quaternion w = alignedWallRotation;
-			transform.rotation = alignedWallRotation;
-		}
-		this.currentWall = wall;
+	public void NotPointingAtWall(GameObject wall) {
+		isPointerPointingAtWall = false;
 	}
 
-	public void NotPointingAtWall() {
-		isPointerPointingAtWall = false;
+	public void AlignObjectToWall(GameObject wall) {
+		if(this.currentWall != wall) {
+			transform.right = wall.transform.right;
+
+			Quaternion alignedWallRotation = wall.transform.rotation;
+			if (transform.rotation != alignedWallRotation) {
+				Quaternion w = alignedWallRotation;
+				transform.rotation = alignedWallRotation;
+			}
+			this.currentWall = wall;
+		}
 	}
 		
 	public void setNone() {

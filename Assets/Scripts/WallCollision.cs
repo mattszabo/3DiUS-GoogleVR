@@ -6,13 +6,13 @@ public class WallCollision : MonoBehaviour {
 	public delegate void Collided(GameObject wall);
 	public delegate void NotCollided();
 	public static event Collided OnEnter;
-	public static event NotCollided OnExit;
+	public static event Collided OnExit;
 
 	public void OnCollisionEnter(object gameObj) {
 		OnEnter(gameObject);
 	}
 
-	void OnCollisionExit() {
-		OnExit();
+	public void OnCollisionExit(object gameObj) {
+		OnExit(gameObject);
 	}
 }

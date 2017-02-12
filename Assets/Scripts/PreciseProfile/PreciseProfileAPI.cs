@@ -35,12 +35,12 @@ public class PreciseProfileAPI : MonoBehaviour {
 
 	// apply the downloaded image to the profile picture as a texture
 	private void SetProfilePicture(Texture2D tex) {
-		GameObject profilePicture = GameObject.Find(PreciseProfileSections.ProfilePicture.ToString());
+		GameObject profilePicture = transform.FindChild("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 
 	private void SetProfileObjectText(string objectText, string objectLabel) {
-		GameObject profileBio = GameObject.Find (objectLabel);
+		GameObject profileBio = transform.FindChild(objectLabel+"Card").FindChild(objectLabel).gameObject;
 		profileBio.GetComponent<TextMesh> ().text = objectText;
 	}
 }
