@@ -53,9 +53,11 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 			case ObjectStates.NONE:
 				break;
 			case ObjectStates.PICKED_UP:
+			 	Profiler.BeginSample("--> PICKED_UP sample");
 				if(isPointerPointingAtWall) {
 					FollowPointerAlongWall();
 				}
+				Profiler.EndSample();
 				break;
 			case ObjectStates.NOT_PICKED_UP:
 				setNone();
