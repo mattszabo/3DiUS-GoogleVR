@@ -36,8 +36,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	}
 
 	void OnDisable() {
-		WallCollision.OnEnter -= PointingAtWall;
-		WallCollision.OnExit -= NotPointingAtWall;
+		CleanupDelegates();
 	}
 
 	void Start () {
@@ -109,6 +108,16 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 			}
 			this.currentWall = wall;
 		}
+	}
+
+	private void CleanupDelegates() {
+		WallCollision.OnEnter -= PointingAtWall;
+		WallCollision.OnExit -= NotPointingAtWall;
+	}
+
+	void OnDestroy() {
+		Debug.Log("Deleting profile");
+		CleanupDelegates();
 	}
 		
 	public void setNone() {

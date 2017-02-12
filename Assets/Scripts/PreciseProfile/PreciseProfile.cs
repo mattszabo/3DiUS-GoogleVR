@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
-using System;
-public class PreciseProfileAPI : MonoBehaviour {
+public class PreciseProfile : MonoBehaviour {
 
 	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
 
 	private enum PreciseProfileSections {
 		ProfileName, ProfileTitle, ProfilePicture, ProfileBio
 	};
+
+	void OnEnable() {
+		PreciseProfileController.Delete += DeletePreciseProfile;
+	}
+
+	void OnDisable() {
+		PreciseProfileController.Delete -= DeletePreciseProfile;
+	}
 
 	IEnumerator Start() {
 
@@ -42,5 +49,10 @@ public class PreciseProfileAPI : MonoBehaviour {
 	private void SetProfileObjectText(string objectText, string objectLabel) {
 		GameObject profileBio = transform.FindChild(objectLabel+"Card").FindChild(objectLabel).gameObject;
 		profileBio.GetComponent<TextMesh> ().text = objectText;
+	}
+
+	public void DeletePreciseProfile(Transform transform) {
+		GameObject preciseProfile = transform.parent.gameObject;
+		Destroy(preciseProfile);
 	}
 }
