@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MoveObjectAlongWalls : MonoBehaviour {
 
@@ -10,8 +11,6 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private GameObject currentWall;
 
 	private bool isPointedAt;
-	private bool isPickedUp;
-	private bool isPointerPointingAtWall;
 
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
@@ -20,32 +19,21 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	{
 		NONE,
 		PICKED_UP,
-        NOT_PICKED_UP
+        NOT_PICKED_UP,
+        FOLLOWING_POINTER
     }
 
 	ObjectStates objectState;
 
-	// layer mask to select any object with layer set to PickedUpObject (edit -> project settings -> tags & layers)
-	readonly int layerPickedUpObject = 1 << 8;
 	readonly int layerWall = 1 << 10;
-	int allLayersExceptPickedUpObject;
 
-	void OnEnable() {
-		WallCollision.OnEnter += PointingAtWall;
-		WallCollision.OnExit += NotPointingAtWall;
-	}
-
-	void OnDisable() {
-		CleanupDelegates();
-	}
+	private Renderer DeleteButtonRenderer;
 
 	void Start () {
-		isPickedUp = false;
 		laserPointer = GameObject.Find ("Laser");
 		objectState = ObjectStates.NONE;
+		DeleteButtonRenderer = transform.FindChild("DeleteButton").GetComponent<Renderer>();
 		
-		// layer mask to select any object except those with layer set to PickedUpObject
-		allLayersExceptPickedUpObject = ~layerPickedUpObject;
 	}
 		
 	void Update () {
@@ -54,8 +42,11 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 				break;
 			case ObjectStates.PICKED_UP:
 			 	Profiler.BeginSample("--> PICKED_UP sample");
-				FollowPointerAlongWall();
+				SetFollowingPointer();
 				Profiler.EndSample();
+				break;
+			case ObjectStates.FOLLOWING_POINTER:
+				FollowPointerAlongWall();
 				break;
 			case ObjectStates.NOT_PICKED_UP:
 				setNone();
@@ -65,15 +56,26 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		}
 	}
 
-	private void FollowPointerAlongWall() {
+    private void SetFollowingPointer()
+    {
+        objectState = ObjectStates.FOLLOWING_POINTER;
+    }
+
+    private void FollowPointerAlongWall() {
         Vector3 controllerOffset = new Vector3(0.35f, -1.0f, 0.0f);
         Ray laserPointerRay = new Ray (laserPointer.transform.position + controllerOffset, laserPointer.transform.forward);
-		RaycastHit objectBehindPickedUpObject;
+		RaycastHit hitObject;
 
-		if(Physics.Raycast (laserPointerRay, out objectBehindPickedUpObject, 140.0f, layerWall) &&
-				objectBehindPickedUpObject.collider.CompareTag("Wall")) {
-			UpdateObjectPositionToHitPoint (laserPointerRay, objectBehindPickedUpObject.point);
-			//Check for new wall to re-align here. Only if I can't update to point through this object when hoevering over new wall.
+		// check if we're hitting an object and if we are, then check if it's a wall
+		if (Physics.Raycast (laserPointerRay, out hitObject, 140.0f, layerWall)) {
+			if (hitObject.collider.CompareTag("Wall")) {
+				GameObject newWall = hitObject.collider.gameObject;
+				if(currentWall != newWall) {
+					AlignObjectToWall(newWall);
+					currentWall = newWall;
+				}
+				UpdateObjectPositionToHitPoint (laserPointerRay, hitObject.point);
+			}
 		}
 	}
 
@@ -83,41 +85,15 @@ public class MoveObjectAlongWalls : MonoBehaviour {
         transform.position = pointerRay.GetPoint (distance - objectDepth);
 	}
 
-
-	// If picking up na object, this only gets called on a new wall if the
-	// pointer is not aiming at this object being picked up
-	private void PointingAtWall(GameObject wall) {
-		if(objectState == ObjectStates.PICKED_UP) {
-			isPointerPointingAtWall = true;
-			AlignObjectToWall(wall);
-		}
-	}
-
-	public void NotPointingAtWall(GameObject wall) {
-		isPointerPointingAtWall = false;
-	}
-
 	public void AlignObjectToWall(GameObject wall) {
-		if(this.currentWall != wall) {
-			transform.right = wall.transform.right;
+		transform.right = wall.transform.right;
 
-			Quaternion alignedWallRotation = wall.transform.rotation;
-			if (transform.rotation != alignedWallRotation) {
-				Quaternion w = alignedWallRotation;
-				transform.rotation = alignedWallRotation;
-			}
-			this.currentWall = wall;
+		Quaternion alignedWallRotation = wall.transform.rotation;
+		if (transform.rotation != alignedWallRotation) {
+			Quaternion w = alignedWallRotation;
+			transform.rotation = alignedWallRotation;
 		}
-	}
-
-	private void CleanupDelegates() {
-		WallCollision.OnEnter -= PointingAtWall;
-		WallCollision.OnExit -= NotPointingAtWall;
-	}
-
-	void OnDestroy() {
-		Debug.Log("Deleting profile");
-		CleanupDelegates();
+		this.currentWall = wall;
 	}
 		
 	public void setNone() {
