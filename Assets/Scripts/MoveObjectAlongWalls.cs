@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class MoveObjectAlongWalls : MonoBehaviour {
 
-	public Material defaultMat;
-	public Material selectedMat;
-	public Material movingMat;
+	// public Material defaultMat;
+	// public Material pointedAtMat;
+	// public Material pickedUpMat;
 
 	private GameObject laserPointer;
 	private GameObject currentWall;
@@ -15,12 +15,13 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	private Vector3 objectLastPosition;
 	private Vector3 objectVelocity;
 
-	enum ObjectStates
-	{
+	enum ObjectStates {
 		NONE,
+		POINTED_AT,
 		PICKED_UP,
-        NOT_PICKED_UP,
-        FOLLOWING_POINTER
+        FOLLOWING_POINTER,
+        PUT_DOWN,
+		NOT_POINTED_AT
     }
 
 	ObjectStates objectState;
@@ -33,30 +34,35 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		laserPointer = GameObject.Find ("Laser");
 		objectState = ObjectStates.NONE;
 		DeleteButtonRenderer = transform.FindChild("DeleteButton").GetComponent<Renderer>();
-		
+		// gameObject.GetComponent<Renderer>().material = pointedAtMat;
+		// transform.FindChild("ProfilePicture").GetComponent<Renderer>().material = pointedAtMat;
 	}
 		
 	void Update () {
 		switch (objectState) {
 			case ObjectStates.NONE:
 				break;
+			case ObjectStates.POINTED_AT:
+				break;
 			case ObjectStates.PICKED_UP:
 			 	Profiler.BeginSample("--> PICKED_UP sample");
-				SetFollowingPointer();
+				SetActionFollowingPointer();
 				Profiler.EndSample();
 				break;
 			case ObjectStates.FOLLOWING_POINTER:
 				FollowPointerAlongWall();
 				break;
-			case ObjectStates.NOT_PICKED_UP:
-				setNone();
+			case ObjectStates.PUT_DOWN:
+				setActionNone();
+				break;
+			case ObjectStates.NOT_POINTED_AT:
 				break;
 			default:
 				break;
 		}
 	}
 
-    private void SetFollowingPointer()
+    private void SetActionFollowingPointer()
     {
         objectState = ObjectStates.FOLLOWING_POINTER;
     }
@@ -96,7 +102,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		this.currentWall = wall;
 	}
 		
-	public void setNone() {
+	public void setActionNone() {
 		objectState = ObjectStates.NONE;
 	}
 	public void SetPointedAt() {
@@ -107,11 +113,11 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 		isPointedAt = false;
 	}
 
-	public void setPickedUp() {
+	public void setActionPickedUp() {
 		objectState = ObjectStates.PICKED_UP;
 	}	
 
-	public void setNotPickedUp() {
-		objectState = ObjectStates.NOT_PICKED_UP;
+	public void setActionPutDown() {
+		objectState = ObjectStates.PUT_DOWN;
 	}
 }
