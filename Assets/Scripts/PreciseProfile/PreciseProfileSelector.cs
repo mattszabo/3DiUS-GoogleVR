@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class PreciseProfileSelector : MonoBehaviour {
 
@@ -9,8 +8,25 @@ public class PreciseProfileSelector : MonoBehaviour {
 	
 	private List<PreciseProfileModel> preciseProfileCollection = new List<PreciseProfileModel>();
 
+	private int currentProfileIndex;
+
+	enum SelectorStates {
+		NONE,
+		SELECT_LEFT,
+		SELECT_RIGHT
+    }
+
+	enum Directions {
+		LEFT = -1,
+		RIGHT = 1
+    }
+
+	private SelectorStates selectorState;
+
 	public IEnumerator Start () {
-		Debug.Log("start");
+		currentProfileIndex = 0;
+		selectorState = SelectorStates.NONE;
+
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/mszabo");
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/dsummers");
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/enash");
@@ -29,19 +45,68 @@ public class PreciseProfileSelector : MonoBehaviour {
 			model.profilePictureTex = www.texture;
 
 			preciseProfileCollection.Add(model);
+			Debug.Log("Added " + model.name);
 		}
 
-		SetProfilePicture (preciseProfileCollection[0].profilePictureTex);
+		UpdateProfilePicture ();
 	}
-	
-    private void SetProfilePicture(Texture2D tex) {
-		Debug.Log("Yew");
+
+    private void UpdateProfilePicture() {
+		Texture2D tex = preciseProfileCollection[currentProfileIndex].profilePictureTex;
 		GameObject profilePicture = transform.FindChild("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 
-    // Update is called once per frame
+	public void SelectLeft() {
+		selectorState = SelectorStates.SELECT_LEFT;
+	}
+
+	public void SelectRight() {
+		selectorState = SelectorStates.SELECT_RIGHT;
+	}
+	
     void Update () {
-		
+		switch(selectorState) {
+			case SelectorStates.NONE:
+				break;
+			case SelectorStates.SELECT_LEFT:
+				UpdateCurrentProfileIndex((int)Directions.LEFT);
+				UpdateProfilePicture();
+				selectorState = SelectorStates.NONE;
+				break;
+			case SelectorStates.SELECT_RIGHT:
+				UpdateCurrentProfileIndex((int)Directions.RIGHT);
+				UpdateProfilePicture();
+				selectorState = SelectorStates.NONE;
+				break;
+			default:
+				break;
+		}
+	}
+
+    private void UpdateCurrentProfileIndex(int i)
+    {
+        currentProfileIndex += i;
+		if (currentProfileIndex >= preciseProfileCollection.Count) {
+			currentProfileIndex = preciseProfileCollection.Count - 1;
+		} else if (currentProfileIndex <= 0) {
+			currentProfileIndex = 0;
+		}
+    }
+
+    private void UpdateDisplay(GameObject gameObject) {
+		if(gameObject.name == "RightButton") {
+			selectorState = SelectorStates.SELECT_RIGHT;
+		} else {
+			selectorState = SelectorStates.SELECT_LEFT;
+		}
+    }
+
+	void OnEnable() {
+		PreciseProfileSelectorController.Direction += UpdateDisplay;
+	}
+
+	void OnDisable() {
+		PreciseProfileSelectorController.Direction -= UpdateDisplay;
 	}
 }

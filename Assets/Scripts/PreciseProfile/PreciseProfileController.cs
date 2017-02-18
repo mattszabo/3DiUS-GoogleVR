@@ -18,9 +18,4 @@ public class PreciseProfileController : MonoBehaviour {
 		Delete(transform);
 	}
 
-	private void SetProfilePicture(Texture2D tex) {
-		GameObject profilePicture = transform.FindChild("ProfilePicture").gameObject;
-		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
-	}
-
 }
