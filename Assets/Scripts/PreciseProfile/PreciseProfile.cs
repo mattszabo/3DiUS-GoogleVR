@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*
+DISPLAY A PRECISE PROFILE
+*/
+
+using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
 public class PreciseProfile : MonoBehaviour {
@@ -24,19 +28,19 @@ public class PreciseProfile : MonoBehaviour {
 		yield return www;
 
 		// parse json and create C# object
-		PreciseProfileModel ppm = PreciseProfileModel.CreateFromJSON (www.text);
+		// PreciseProfileModel ppm = PreciseProfileModel.CreateFromJSON (www.text);
 
 		// download the image from the photo_url
-		www = new WWW (ppm.photo_url);
+		// www = new WWW (ppm.photo_url);
 		yield return www;
 
 		SetProfilePicture (www.texture);
 
-		SetProfileObjectText (ppm.name, PreciseProfileSections.ProfileName.ToString());
-		SetProfileObjectText (ppm.title, PreciseProfileSections.ProfileTitle.ToString());
-		string bioString = ppm.bio.Substring(0, 265);
-		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
-		SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
+		// SetProfileObjectText (ppm.name, PreciseProfileSections.ProfileName.ToString());
+		// SetProfileObjectText (ppm.title, PreciseProfileSections.ProfileTitle.ToString());
+		// string bioString = ppm.bio.Substring(0, 265);
+		// bioString = Regex.Replace(bioString, ".{40}", "$0\n");
+		// SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
 
 	}
 

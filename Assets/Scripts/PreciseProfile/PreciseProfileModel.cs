@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/*
+THE STRUCTURE OF A PRECISE PROFILE
+*/
+
+using UnityEngine;
 
 [System.Serializable]
 public class PreciseProfileModel {
@@ -8,6 +12,7 @@ public class PreciseProfileModel {
 	public string bio;
 	public string photo_url;
 	public string authenticated_url;
+	public Texture2D profilePictureTex;
 
 	public static PreciseProfileModel CreateFromJSON(string jsonString) {
 		return JsonUtility.FromJson<PreciseProfileModel> (jsonString);
