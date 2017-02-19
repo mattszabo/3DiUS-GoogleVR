@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿/*
+PRECISE PROFILE SELECTOR IS ESSENTIALLY A MANAGER FOR SEARCHING AND OPENING UP PROFILES
+*/
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
 
 public class PreciseProfileSelector : MonoBehaviour {
 
@@ -107,12 +110,14 @@ public class PreciseProfileSelector : MonoBehaviour {
 	void OnEnable() {
 		PreciseProfileController.Direction += UpdateDisplay;
 		PreciseProfileController.AddProfile += AddProfile;
+		PreciseProfileController.DeleteProfile += DeleteProfile;
 	}
 
 
     void OnDisable() {
 		PreciseProfileController.Direction -= UpdateDisplay;
 		PreciseProfileController.AddProfile -= AddProfile;
+		PreciseProfileController.DeleteProfile -= DeleteProfile;
 	}
     private void AddProfile() {
 		PreciseProfileModel profileModel =  preciseProfileCollection[currentProfileIndex];
@@ -122,4 +127,13 @@ public class PreciseProfileSelector : MonoBehaviour {
 			openProfiles.Add(profileModel.id);
 		}
     }
+
+	private void DeleteProfile(Transform transform) {
+		GameObject profile = transform.parent.gameObject;
+		Destroy(profile);
+		Debug.Log("Deleting " + profile.name);
+		Debug.Log(openProfiles);
+		openProfiles.Remove(profile.GetComponent<PreciseProfile>().id);
+		Debug.Log(openProfiles);
+	}
 }

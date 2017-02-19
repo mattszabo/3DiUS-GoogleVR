@@ -7,19 +7,11 @@ using System.Text.RegularExpressions;
 
 public class PreciseProfile : MonoBehaviour {
 
-	// private PreciseProfileModel profile;
-
 	private enum PreciseProfileSections {
 		ProfileName, ProfileTitle, ProfilePicture, ProfileBio
 	};
 
-	void OnEnable() {
-		PreciseProfileController.Delete += DeletePreciseProfile;
-	}
-
-    void OnDisable() {
-		PreciseProfileController.Delete -= DeletePreciseProfile;
-	}
+	public int id;
 
 	public void Init(PreciseProfileModel profile) {
 		SetProfilePicture (profile.profilePictureTex);
@@ -28,9 +20,9 @@ public class PreciseProfile : MonoBehaviour {
 		string bioString = profile.bio.Substring(0, 265);
 		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
 		SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
+		id = profile.id;
 	}
 
-	// apply the downloaded image to the profile picture as a texture
 	private void SetProfilePicture(Texture2D tex) {
 		GameObject profilePicture = transform.FindChild("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
@@ -39,10 +31,5 @@ public class PreciseProfile : MonoBehaviour {
 	private void SetProfileObjectText(string objectText, string objectLabel) {
 		GameObject profileBio = transform.FindChild(objectLabel+"Card").FindChild(objectLabel).gameObject;
 		profileBio.GetComponent<TextMesh> ().text = objectText;
-	}
-
-	public void DeletePreciseProfile(Transform transform) {
-		GameObject preciseProfile = transform.parent.gameObject;
-		Destroy(preciseProfile);
-	}
+	}	
 }
