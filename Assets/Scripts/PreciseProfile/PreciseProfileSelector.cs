@@ -13,7 +13,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 	private List<PreciseProfileModel> preciseProfileCollection = new List<PreciseProfileModel>();
 
 	private int currentProfileIndex;
-	private List<int> openProfiles = new List<int>();
+	private List<string> openProfiles = new List<string>();
 
 	enum SelectorStates {
 		NONE,
@@ -48,7 +48,6 @@ public class PreciseProfileSelector : MonoBehaviour {
 			www = new WWW (model.photo_url);
 			yield return www;
 			model.profilePictureTex = www.texture;
-			model.id = preciseProfileCollection.Count;
 			preciseProfileCollection.Add(model);
 			Debug.Log("Added " + model.name);
 		}
@@ -121,10 +120,10 @@ public class PreciseProfileSelector : MonoBehaviour {
 	}
     private void AddProfile() {
 		PreciseProfileModel profileModel =  preciseProfileCollection[currentProfileIndex];
-		if(!openProfiles.Contains(profileModel.id)) {
+		if(!openProfiles.Contains(profileModel.photo_url)) {
 			GameObject profile = Instantiate(Resources.Load("PreciseProfile")) as GameObject;
 			profile.GetComponent<PreciseProfile>().Init(preciseProfileCollection[currentProfileIndex]);
-			openProfiles.Add(profileModel.id);
+			openProfiles.Add(profileModel.photo_url);
 		}
     }
 
@@ -133,7 +132,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 		Destroy(profile);
 		Debug.Log("Deleting " + profile.name);
 		Debug.Log(openProfiles);
-		openProfiles.Remove(profile.GetComponent<PreciseProfile>().id);
+		openProfiles.Remove(profile.GetComponent<PreciseProfile>().GetPhotoUrl());
 		Debug.Log(openProfiles);
 	}
 }

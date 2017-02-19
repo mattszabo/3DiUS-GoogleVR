@@ -13,7 +13,6 @@ public class PreciseProfileModel {
 	public string photo_url;
 	public string authenticated_url;
 	public Texture2D profilePictureTex;
-	public int id;
 
 	public static PreciseProfileModel CreateFromJSON(string jsonString) {
 		return JsonUtility.FromJson<PreciseProfileModel> (jsonString);
