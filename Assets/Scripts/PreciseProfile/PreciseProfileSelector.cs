@@ -1,22 +1,25 @@
 ﻿/*
-PRECISE PROFILE SELECTOR IS ESSENTIALLY A MANAGER FOR SEARCHING AND OPENING UP PROFILES
+PRECISE PROFILE SELECTOR HANDLES BROWSING THROUGH, FILTERING, AND OPENING UP PROFILES
 */
 
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 
 public class PreciseProfileSelector : MonoBehaviour {
 
 	private int currentProfileIndex;
 	private List<PreciseProfileModel> profileCollection = new List<PreciseProfileModel>();
+	private List<PreciseProfileModel> displayProfileCollection = new List<PreciseProfileModel>();
+	
 	private PreciseProfileService preciseProfileService;
 
 	enum SelectorStates {
 		NONE,
 		SELECT_LEFT,
-		SELECT_RIGHT
+		SELECT_RIGHT,
+        LOADING,
+		UPDATE_SELECTOR_FILTER
     }
 
 	enum Directions {
@@ -25,16 +28,28 @@ public class PreciseProfileSelector : MonoBehaviour {
     }
 
 	private SelectorStates selectorState;
+	private string selectorFilter;
 
 	public void Start () {
 		
 		selectorState = SelectorStates.NONE;
+		selectorFilter = "ALL";
+		// Debug.Log("starting service");
 		// preciseProfileService = new PreciseProfileService();
-		// profileCollection = preciseProfileService.GetProfilesFromList();
+		// Debug.Log("getting models");
+		// profileCollection = preciseProfileService.GetProfileModels();
+		// Debug.Log("got models");
+		// Debug.Log(profileCollection);
+		// UpdateProfilePicture();
+
+		// CoroutineWithData cd = new CoroutineWithData(this, preciseProfileService.Init() );
+		// yield return cd.coroutine;
+		// profileCollection = (List<PreciseProfileModel>)cd.result;
+		// UpdateProfilePicture();
 	}
 
     private void UpdateProfilePicture() {
-		Texture2D tex = profileCollection[currentProfileIndex].profilePictureTex;
+		Texture2D tex = displayProfileCollection[currentProfileIndex].profilePictureTex;
 		GameObject profilePicture = transform.FindChild("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
@@ -51,15 +66,23 @@ public class PreciseProfileSelector : MonoBehaviour {
 		switch(selectorState) {
 			case SelectorStates.NONE:
 				break;
+			case SelectorStates.LOADING:
+				FilterSelectorProfiles("Marketing Consultant");
+				UpdateProfilePicture ();
+				break;
+			case SelectorStates.UPDATE_SELECTOR_FILTER:
+				FilterSelectorProfiles("Marketing Consultant");
+				UpdateProfilePicture ();
+				break;
 			case SelectorStates.SELECT_LEFT:
-				if(profileCollection.Count > 0) {
+				if(displayProfileCollection.Count > 0) {
 					UpdateCurrentProfileIndex((int)Directions.LEFT);
 					UpdateProfilePicture();
 				}
 				selectorState = SelectorStates.NONE;
 				break;
 			case SelectorStates.SELECT_RIGHT:
-				if(profileCollection.Count > 0) {
+				if(displayProfileCollection.Count > 0) {
 					UpdateCurrentProfileIndex((int)Directions.RIGHT);
 					UpdateProfilePicture();
 				}
@@ -73,8 +96,8 @@ public class PreciseProfileSelector : MonoBehaviour {
     private void UpdateCurrentProfileIndex(int i)
     {
         currentProfileIndex += i;
-		if (currentProfileIndex >= profileCollection.Count) {
-			currentProfileIndex = profileCollection.Count - 1;
+		if (currentProfileIndex >= displayProfileCollection.Count) {
+			currentProfileIndex = displayProfileCollection.Count - 1;
 		} else if (currentProfileIndex <= 0) {
 			currentProfileIndex = 0;
 		}
@@ -107,15 +130,28 @@ public class PreciseProfileSelector : MonoBehaviour {
     }
 
     private void AddProfile() {
-		if(profileCollection.Count > 0) {
-			PreciseProfileService.AddProfile(profileCollection[currentProfileIndex]);
+		if(displayProfileCollection.Count > 0) {
+			PreciseProfileService.AddProfile(displayProfileCollection[currentProfileIndex]);
 		}
     }
 
-	private void LoadSelectorWithProfiles(List<PreciseProfileModel> profileCollection) {
-		this.profileCollection = profileCollection;
-		UpdateProfilePicture ();
+	private void LoadSelectorWithProfiles(List<PreciseProfileModel> aProfileCollection) {
+		this.profileCollection = aProfileCollection;
+		selectorState = SelectorStates.LOADING;
+	}
+	private void FilterSelectorProfiles(string aTitleFilter) {
+		if(selectorFilter != aTitleFilter) {
+			if(selectorFilter == "ALL") {
+				displayProfileCollection = profileCollection;
+			} else {
+				currentProfileIndex = 0;
+				this.displayProfileCollection = profileCollection.Where(p => p.title == aTitleFilter).ToList();
+			}
+		}
+		selectorFilter = aTitleFilter;
 	}
 
-	
+	public void UpdateSelectorFilter() {
+		selectorState = SelectorStates.UPDATE_SELECTOR_FILTER;
+	}
 }

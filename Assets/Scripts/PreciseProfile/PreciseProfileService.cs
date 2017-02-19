@@ -12,11 +12,10 @@ public class PreciseProfileService : MonoBehaviour {
 	private static List<string> openProfiles = new List<string>();
 	private List<PreciseProfileModel> profileCollection = new List<PreciseProfileModel>();
 
-	
 	public PreciseProfileService() {
 		
 	}
-	IEnumerator Start() {
+	public IEnumerator Start() {
 		
 		profileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/mszabo");
 		profileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/dsummers");
@@ -26,6 +25,7 @@ public class PreciseProfileService : MonoBehaviour {
 		// preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/nali");
 
 		// Get each profile's text and profile texture... this currently takes a fair few seconds.
+
 		WWW www;
 		foreach(string url in profileURLS) {
 			www = new WWW(url);
@@ -39,7 +39,41 @@ public class PreciseProfileService : MonoBehaviour {
 		}
 
 		LoadProfilesIntoSelector();
+		// Debug.Log("WWW");
+		// WWW www = (WWW)WwwYield("https://precise-photos-prod-us.s3.amazonaws.com/56ed9ffff79b4739299b786dcb880400").Current;
+		// Debug.Log(www);
+
+		// foreach(string url in profileURLS) {
+		// 	CoroutineWithData cd = new CoroutineWithData(this, WwwYield(url) );
+		// 	yield return cd.coroutine;
+		// 	Debug.Log("result is " + cd.result);  //  'success' or 'fail'
+		// 	profileCollection.Add((PreciseProfileModel)cd.result);
+		// }
+
+		// yield return profileCollection;
 	}
+
+	// public IEnumerator GetProfileModels() {
+	// 	Init();
+	// 	yield return profileCollection;
+	// }
+
+	// public IEnumerator WwwYield(String url) {
+	// 	WWW www = new WWW(url);
+	// 	yield return www;
+	// 	if (String.IsNullOrEmpty(www.error)) {
+	// 		PreciseProfileModel model = PreciseProfileModel.CreateFromJSON(www.text);
+	// 		www = new WWW (model.photo_url);
+	// 		if (String.IsNullOrEmpty(www.error)) {
+	// 			model.profilePictureTex = www.texture;
+	// 			yield return model;
+	// 		} else {
+	// 			yield return www.error;
+	// 		}
+	// 	} else {
+	// 		yield return www.error;
+	// 	}
+	// }
 
     private void LoadProfilesIntoSelector() {
 		PassProfileModels(profileCollection);
@@ -66,3 +100,20 @@ public class PreciseProfileService : MonoBehaviour {
 		}
     }
 }
+
+// public class CoroutineWithData {
+//      public Coroutine coroutine { get; private set; }
+//      public object result;
+//      private IEnumerator target;
+//      public CoroutineWithData(MonoBehaviour owner, IEnumerator target) {
+//          this.target = target;
+//          this.coroutine = owner.StartCoroutine(Run());
+//      }
+ 
+//      private IEnumerator Run() {
+//          while(target.MoveNext()) {
+//              result = target.Current;
+//              yield return result;
+//          }
+//      }
+//  }
