@@ -3,11 +3,11 @@ DISPLAY A PRECISE PROFILE
 */
 
 using UnityEngine;
-using System.Collections;
 using System.Text.RegularExpressions;
+
 public class PreciseProfile : MonoBehaviour {
 
-	public string url = "http://api.precise.io/orgs/dius/public_profiles/mszabo";
+	// private PreciseProfileModel profile;
 
 	private enum PreciseProfileSections {
 		ProfileName, ProfileTitle, ProfilePicture, ProfileBio
@@ -17,31 +17,17 @@ public class PreciseProfile : MonoBehaviour {
 		PreciseProfileController.Delete += DeletePreciseProfile;
 	}
 
-	void OnDisable() {
+    void OnDisable() {
 		PreciseProfileController.Delete -= DeletePreciseProfile;
 	}
 
-	IEnumerator Start() {
-
-		// get json from api
-		WWW www = new WWW(url);
-		yield return www;
-
-		// parse json and create C# object
-		// PreciseProfileModel ppm = PreciseProfileModel.CreateFromJSON (www.text);
-
-		// download the image from the photo_url
-		// www = new WWW (ppm.photo_url);
-		yield return www;
-
-		SetProfilePicture (www.texture);
-
-		// SetProfileObjectText (ppm.name, PreciseProfileSections.ProfileName.ToString());
-		// SetProfileObjectText (ppm.title, PreciseProfileSections.ProfileTitle.ToString());
-		// string bioString = ppm.bio.Substring(0, 265);
-		// bioString = Regex.Replace(bioString, ".{40}", "$0\n");
-		// SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
-
+	public void Init(PreciseProfileModel profile) {
+		SetProfilePicture (profile.profilePictureTex);
+		SetProfileObjectText (profile.name, PreciseProfileSections.ProfileName.ToString());
+		SetProfileObjectText (profile.title, PreciseProfileSections.ProfileTitle.ToString());
+		string bioString = profile.bio.Substring(0, 265);
+		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
+		SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
 	}
 
 	// apply the downloaded image to the profile picture as a texture

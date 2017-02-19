@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class PreciseProfileSelector : MonoBehaviour {
 
 	private List<string> preciseProfileURLS = new List<string>();
@@ -9,6 +10,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 	private List<PreciseProfileModel> preciseProfileCollection = new List<PreciseProfileModel>();
 
 	private int currentProfileIndex;
+	private List<int> openProfiles = new List<int>();
 
 	enum SelectorStates {
 		NONE,
@@ -30,9 +32,9 @@ public class PreciseProfileSelector : MonoBehaviour {
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/mszabo");
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/dsummers");
 		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/enash");
-		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/sbartlett");
-		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/kong");
-		preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/nali");
+		// preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/sbartlett");
+		// preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/kong");
+		// preciseProfileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/nali");
 
 		// Get each profile's text and profile texture... this currently takes a fair few seconds.
 		WWW www;
@@ -43,7 +45,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 			www = new WWW (model.photo_url);
 			yield return www;
 			model.profilePictureTex = www.texture;
-
+			model.id = preciseProfileCollection.Count;
 			preciseProfileCollection.Add(model);
 			Debug.Log("Added " + model.name);
 		}
@@ -64,7 +66,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 	public void SelectRight() {
 		selectorState = SelectorStates.SELECT_RIGHT;
 	}
-	
+
     void Update () {
 		switch(selectorState) {
 			case SelectorStates.NONE:
@@ -103,10 +105,21 @@ public class PreciseProfileSelector : MonoBehaviour {
     }
 
 	void OnEnable() {
-		PreciseProfileSelectorController.Direction += UpdateDisplay;
+		PreciseProfileController.Direction += UpdateDisplay;
+		PreciseProfileController.AddProfile += AddProfile;
 	}
 
-	void OnDisable() {
-		PreciseProfileSelectorController.Direction -= UpdateDisplay;
+
+    void OnDisable() {
+		PreciseProfileController.Direction -= UpdateDisplay;
+		PreciseProfileController.AddProfile -= AddProfile;
 	}
+    private void AddProfile() {
+		PreciseProfileModel profileModel =  preciseProfileCollection[currentProfileIndex];
+		if(!openProfiles.Contains(profileModel.id)) {
+			GameObject profile = Instantiate(Resources.Load("PreciseProfile")) as GameObject;
+			profile.GetComponent<PreciseProfile>().Init(preciseProfileCollection[currentProfileIndex]);
+			openProfiles.Add(profileModel.id);
+		}
+    }
 }
