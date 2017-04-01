@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class PreciseProfileService : MonoBehaviour {
 
@@ -9,14 +8,10 @@ public class PreciseProfileService : MonoBehaviour {
 	public static event PassProfileModelsDelegate PassProfileModels;
 
 	private List<string> profileURLS = new List<string>();
-	private static List<string> openProfiles = new List<string>();
+	private static List<string> openProfileKeys = new List<string>();
 	private List<PreciseProfileModel> profileCollection = new List<PreciseProfileModel>();
 
-	public PreciseProfileService() {
-		
-	}
 	public IEnumerator Start() {
-		
 		profileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/mszabo");
 		profileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/dsummers");
 		profileURLS.Add("http://api.precise.io/orgs/dius/public_profiles/enash");
@@ -36,44 +31,9 @@ public class PreciseProfileService : MonoBehaviour {
 			model.profilePictureTex = www.texture;
 			profileCollection.Add(model);
 			Debug.Log("Added " + model.name);
+		    LoadProfilesIntoSelector();
 		}
-
-		LoadProfilesIntoSelector();
-		// Debug.Log("WWW");
-		// WWW www = (WWW)WwwYield("https://precise-photos-prod-us.s3.amazonaws.com/56ed9ffff79b4739299b786dcb880400").Current;
-		// Debug.Log(www);
-
-		// foreach(string url in profileURLS) {
-		// 	CoroutineWithData cd = new CoroutineWithData(this, WwwYield(url) );
-		// 	yield return cd.coroutine;
-		// 	Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-		// 	profileCollection.Add((PreciseProfileModel)cd.result);
-		// }
-
-		// yield return profileCollection;
 	}
-
-	// public IEnumerator GetProfileModels() {
-	// 	Init();
-	// 	yield return profileCollection;
-	// }
-
-	// public IEnumerator WwwYield(String url) {
-	// 	WWW www = new WWW(url);
-	// 	yield return www;
-	// 	if (String.IsNullOrEmpty(www.error)) {
-	// 		PreciseProfileModel model = PreciseProfileModel.CreateFromJSON(www.text);
-	// 		www = new WWW (model.photo_url);
-	// 		if (String.IsNullOrEmpty(www.error)) {
-	// 			model.profilePictureTex = www.texture;
-	// 			yield return model;
-	// 		} else {
-	// 			yield return www.error;
-	// 		}
-	// 	} else {
-	// 		yield return www.error;
-	// 	}
-	// }
 
     private void LoadProfilesIntoSelector() {
 		PassProfileModels(profileCollection);
@@ -87,33 +47,19 @@ public class PreciseProfileService : MonoBehaviour {
 		GameObject profile = transform.parent.gameObject;
 		Destroy(profile);
 		Debug.Log("Deleting " + profile.name);
-		Debug.Log(openProfiles);
-		openProfiles.Remove(profile.GetComponent<PreciseProfile>().GetPhotoUrl());
-		Debug.Log(openProfiles);
+		Debug.Log(openProfileKeys);
+		openProfileKeys.Remove(profile.GetComponent<PreciseProfile>().GetPhotoUrl());
+		Debug.Log(openProfileKeys);
 	}
 
     internal static void AddProfile(PreciseProfileModel preciseProfileModel){
-		if(!openProfiles.Contains(preciseProfileModel.photo_url)) {
+        var profileKey = preciseProfileModel.photo_url;
+        if (!openProfileKeys.Contains(profileKey)) {
 			GameObject profile = Instantiate(Resources.Load("PreciseProfile")) as GameObject;
 			profile.GetComponent<PreciseProfile>().Init(preciseProfileModel);
-			openProfiles.Add(preciseProfileModel.photo_url);
+            profile.GetComponent<PreciseProfile>().DisableBio();
+			openProfileKeys.Add(profileKey);
 		}
     }
 }
 
-// public class CoroutineWithData {
-//      public Coroutine coroutine { get; private set; }
-//      public object result;
-//      private IEnumerator target;
-//      public CoroutineWithData(MonoBehaviour owner, IEnumerator target) {
-//          this.target = target;
-//          this.coroutine = owner.StartCoroutine(Run());
-//      }
- 
-//      private IEnumerator Run() {
-//          while(target.MoveNext()) {
-//              result = target.Current;
-//              yield return result;
-//          }
-//      }
-//  }
