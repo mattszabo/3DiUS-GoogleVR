@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7c25d1a3-7a01-4756-a6ca-4616b65f0675" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/contentModel.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/riderModule.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileSelector.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Scripts/Tests/Editor.meta" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileSelector.cs.meta" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs" afterPath="$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="PreciseProfile.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+              <folding>
+                <marker date="1491698615833" expanded="true" signature="6:56" ph="..." />
+                <marker date="1491698615833" expanded="true" signature="102:1222" ph="{...}" />
+                <marker date="1491698615833" expanded="true" signature="142:186" ph="{...}" />
+                <marker date="1491698615833" expanded="true" signature="281:723" ph="{...}" />
+                <marker date="1491698615833" expanded="true" signature="770:918" ph="{...}" />
+                <marker date="1491698615833" expanded="true" signature="994:1150" ph="{...}" />
+                <marker date="1491698615833" expanded="true" signature="1182:1220" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreciseProfileSelector.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+              <folding>
+                <marker date="1491701966567" expanded="true" signature="6:85" ph="..." />
+                <marker date="1491701966567" expanded="true" signature="139:3748" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="405:448" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="478:510" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="700:745" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="787:1023" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1051:1101" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1130:1181" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1210:1721" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1237:1718" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1351:1409" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1536:1595" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1769:2093" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="1891:1968" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2013:2055" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2149:2307" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2190:2243" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2326:2568" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2591:2833" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2887:2950" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="2982:3163" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="3033:3157" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="3250:3400" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="3481:3746" ph="{...}" />
+                <marker date="1491701966567" expanded="true" signature="3519:3569" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreciseProfileController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <marker date="1491391850464" expanded="true" signature="0:54" ph="/* CONTROLLER FOR ALL PRECISE PROFILE RELATED LOGIC ... */" />
+                <marker date="1491391850464" expanded="true" signature="130:633" ph="{...}" />
+                <marker date="1491391850464" expanded="true" signature="467:496" ph="{...}" />
+                <marker date="1491391850464" expanded="true" signature="535:555" ph="{...}" />
+                <marker date="1491391850464" expanded="true" signature="598:630" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PreciseProfileService.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+              <folding>
+                <marker date="1491698547652" expanded="true" signature="6:92" ph="..." />
+                <marker date="1491698547652" expanded="true" signature="145:3492" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="550:557" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="586:2046" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="825:1176" ph="/* preciseProfileURLS.Add(&quot;http://api.precise.io/orgs/dius/public_profiles/sbartlett&quot;); ... */" />
+                <marker date="1491698547652" expanded="true" signature="1226:1522" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="1556:2043" ph="/* Debug.Log(&quot;WWW&quot;); ... */" />
+                <marker date="1491698547652" expanded="true" signature="2049:2638" ph="/* public IEnumerator GetProfileModels() { ... */" />
+                <marker date="1491698547652" expanded="true" signature="2684:2731" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="2794:2826" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="2885:3133" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="3211:3490" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="3273:3484" ph="{...}" />
+                <marker date="1491698547652" expanded="true" signature="3494:4015" ph="/* public class CoroutineWithData { ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>1</find>
+      <find>1923</find>
+      <find>192</find>
+      <find>192.</find>
+      <find>192.1</find>
+      <find>192.168</find>
+      <find>PreciseProfile.PreciseProfile</find>
+      <find>_displayProfileCollection</find>
+      <find>display</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>PreciseProfile</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly-CSharp" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scripts" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly-CSharp" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scripts" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PreciseProfile" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly-CSharp" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scripts" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PreciseProfile" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Selector" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly-CSharp" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assets" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="3DiUS-GoogleVR (3 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assembly-CSharp" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="node.js.path.for.package.jscs" value="project" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
+    <property name="node.js.selected.package.jscs" value="" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue=".NET Project.Default" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c25d1a3-7a01-4756-a6ca-4616b65f0675" name="Default" comment="" />
+      <created>1491392675302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1491392675302</updated>
+      <workItem from="1491392677665" duration="159000" />
+      <workItem from="1491393348868" duration="332000" />
+      <workItem from="1491697931558" duration="337000" />
+      <workItem from="1491698280866" duration="3731000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4559000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run Dashboard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26066098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Legacy/Scripts/Internal/VRDevices/EditorDevice.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="63" lean-forward="false" selection-start-line="55" selection-start-column="63" selection-end-line="55" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Legacy/Scripts/Internal/VRDevices/EditorDevice.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="55" column="63" lean-forward="false" selection-start-line="55" selection-start-column="63" selection-end-line="55" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Scripts/Controller/Internal/Emulator/EmulatorConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GoogleVR/Legacy/Scripts/Internal/VRDevices/EditorDevice.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <marker date="1491698615833" expanded="true" signature="6:56" ph="..." />
+            <marker date="1491698615833" expanded="true" signature="102:1222" ph="{...}" />
+            <marker date="1491698615833" expanded="true" signature="142:186" ph="{...}" />
+            <marker date="1491698615833" expanded="true" signature="281:723" ph="{...}" />
+            <marker date="1491698615833" expanded="true" signature="770:918" ph="{...}" />
+            <marker date="1491698615833" expanded="true" signature="994:1150" ph="{...}" />
+            <marker date="1491698615833" expanded="true" signature="1182:1220" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="6" lean-forward="false" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding>
+            <marker date="1491698547652" expanded="true" signature="6:92" ph="..." />
+            <marker date="1491698547652" expanded="true" signature="145:3492" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="550:557" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="586:2046" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="825:1176" ph="/* preciseProfileURLS.Add(&quot;http://api.precise.io/orgs/dius/public_profiles/sbartlett&quot;); ... */" />
+            <marker date="1491698547652" expanded="true" signature="1226:1522" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="1556:2043" ph="/* Debug.Log(&quot;WWW&quot;); ... */" />
+            <marker date="1491698547652" expanded="true" signature="2049:2638" ph="/* public IEnumerator GetProfileModels() { ... */" />
+            <marker date="1491698547652" expanded="true" signature="2684:2731" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="2794:2826" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="2885:3133" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="3211:3490" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="3273:3484" ph="{...}" />
+            <marker date="1491698547652" expanded="true" signature="3494:4015" ph="/* public class CoroutineWithData { ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <marker date="1491391850464" expanded="true" signature="0:54" ph="/* CONTROLLER FOR ALL PRECISE PROFILE RELATED LOGIC ... */" />
+            <marker date="1491391850464" expanded="true" signature="130:633" ph="{...}" />
+            <marker date="1491391850464" expanded="true" signature="467:496" ph="{...}" />
+            <marker date="1491391850464" expanded="true" signature="535:555" ph="{...}" />
+            <marker date="1491391850464" expanded="true" signature="598:630" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="22" column="44" lean-forward="true" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+          <folding>
+            <marker date="1491701966567" expanded="true" signature="6:85" ph="..." />
+            <marker date="1491701966567" expanded="true" signature="139:3748" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="405:448" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="478:510" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="700:745" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="787:1023" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1051:1101" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1130:1181" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1210:1721" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1237:1718" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1351:1409" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1536:1595" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1769:2093" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="1891:1968" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2013:2055" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2149:2307" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2190:2243" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2326:2568" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2591:2833" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2887:2950" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="2982:3163" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="3033:3157" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="3250:3400" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="3481:3746" ph="{...}" />
+            <marker date="1491701966567" expanded="true" signature="3519:3569" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
