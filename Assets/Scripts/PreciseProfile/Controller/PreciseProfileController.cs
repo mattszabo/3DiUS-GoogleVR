@@ -1,8 +1,4 @@
-﻿/*
-CONTROLLER FOR ALL PRECISE PROFILE RELATED LOGIC
-*/
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PreciseProfileController : MonoBehaviour {
 
@@ -15,15 +11,14 @@ public class PreciseProfileController : MonoBehaviour {
 	public static event Action AddProfile;
 
 	public void DirectionButtonClick() {
-		Direction(gameObject);
+	    if (Direction != null) Direction(gameObject);
 	}
 
 	public void AddProfileButtonClick() {
-		AddProfile();
+	    if (AddProfile != null) AddProfile();
 	}
 	
 	public void DeleteProfileButtonClick() {
-		DeleteProfile(transform);
+	    if (DeleteProfile != null) DeleteProfile(transform);
 	}
-
 }

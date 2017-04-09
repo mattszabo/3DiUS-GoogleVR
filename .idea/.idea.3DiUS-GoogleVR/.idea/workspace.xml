@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c25d1a3-7a01-4756-a6ca-4616b65f0675" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileModel.cs.meta" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileModel.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Model/PreciseProfileModel.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.3DiUS-GoogleVR/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs.meta" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Controller/PreciseProfileController.cs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +15,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PreciseProfile.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PreciseProfile.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfile.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
@@ -86,17 +82,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PreciseProfileController.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs">
+      <file leaf-file-name="PreciseProfileController.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Controller/PreciseProfileController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="391">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
-                <marker date="1491391850464" expanded="true" signature="0:54" ph="/* CONTROLLER FOR ALL PRECISE PROFILE RELATED LOGIC ... */" />
-                <marker date="1491391850464" expanded="true" signature="130:633" ph="{...}" />
-                <marker date="1491391850464" expanded="true" signature="467:496" ph="{...}" />
-                <marker date="1491391850464" expanded="true" signature="535:555" ph="{...}" />
-                <marker date="1491391850464" expanded="true" signature="598:630" ph="{...}" />
+                <marker date="1491702742573" expanded="true" signature="74:659" ph="{...}" />
+                <marker date="1491702742573" expanded="true" signature="411:466" ph="{...}" />
+                <marker date="1491702742573" expanded="true" signature="505:552" ph="{...}" />
+                <marker date="1491702742573" expanded="true" signature="595:657" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -157,6 +152,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileService.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Model/PreciseProfileModel.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Controller/PreciseProfileController.cs" />
       </list>
     </option>
   </component>
@@ -273,7 +269,7 @@
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Model" />
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
           </PATH>
@@ -401,12 +397,12 @@
       <workItem from="1491392677665" duration="159000" />
       <workItem from="1491393348868" duration="332000" />
       <workItem from="1491697931558" duration="337000" />
-      <workItem from="1491698280866" duration="4325000" />
+      <workItem from="1491698280866" duration="4528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5153000" />
+    <option name="totallyTimeSpent" value="5356000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -522,20 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/PreciseProfileController.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <marker date="1491391850464" expanded="true" signature="0:54" ph="/* CONTROLLER FOR ALL PRECISE PROFILE RELATED LOGIC ... */" />
-            <marker date="1491391850464" expanded="true" signature="130:633" ph="{...}" />
-            <marker date="1491391850464" expanded="true" signature="467:496" ph="{...}" />
-            <marker date="1491391850464" expanded="true" signature="535:555" ph="{...}" />
-            <marker date="1491391850464" expanded="true" signature="598:630" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Selector/PreciseProfileSelector.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -593,6 +575,19 @@
             <marker date="1491702572809" expanded="true" signature="770:918" ph="{...}" />
             <marker date="1491702572809" expanded="true" signature="994:1150" ph="{...}" />
             <marker date="1491702572809" expanded="true" signature="1182:1219" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PreciseProfile/Controller/PreciseProfileController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <marker date="1491702742573" expanded="true" signature="74:659" ph="{...}" />
+            <marker date="1491702742573" expanded="true" signature="411:466" ph="{...}" />
+            <marker date="1491702742573" expanded="true" signature="505:552" ph="{...}" />
+            <marker date="1491702742573" expanded="true" signature="595:657" ph="{...}" />
           </folding>
         </state>
       </provider>
