@@ -30,12 +30,12 @@ public class PreciseProfileService : MonoBehaviour {
 		foreach(string url in profileURLS) {
 			www = new WWW(url);
 			yield return www;
-			PreciseProfileModel model =  PreciseProfileModel.CreateFromJSON(www.text);
-			www = new WWW (model.photo_url);
+			PreciseProfileModel model =  PreciseProfileModel.CreateFromJson(www.text);
+			www = new WWW (model.PhotoUrl);
 			yield return www;
-			model.profilePictureTex = www.texture;
+			model.ProfilePictureTex = www.texture;
 			profileCollection.Add(model);
-			Debug.Log("Added " + model.name);
+			Debug.Log("Added " + model.Name);
 		}
 
 		LoadProfilesIntoSelector();
@@ -93,10 +93,10 @@ public class PreciseProfileService : MonoBehaviour {
 	}
 
     internal static void AddProfile(PreciseProfileModel preciseProfileModel){
-		if(!openProfiles.Contains(preciseProfileModel.photo_url)) {
+		if(!openProfiles.Contains(preciseProfileModel.PhotoUrl)) {
 			GameObject profile = Instantiate(Resources.Load("PreciseProfile")) as GameObject;
 			profile.GetComponent<PreciseProfile>().Init(preciseProfileModel);
-			openProfiles.Add(preciseProfileModel.photo_url);
+			openProfiles.Add(preciseProfileModel.PhotoUrl);
 		}
     }
 }

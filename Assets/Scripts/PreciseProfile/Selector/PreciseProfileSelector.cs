@@ -31,7 +31,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 	}
 
     private void UpdateProfilePicture() {
-		var tex = _filteredProfileCollection[_currentFilteredProfileIndex].profilePictureTex;
+		var tex = _filteredProfileCollection[_currentFilteredProfileIndex].ProfilePictureTex;
 		var profilePicture = transform.FindChild("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
@@ -121,6 +121,6 @@ public class PreciseProfileSelector : MonoBehaviour {
         }
 	    // reset index to avoid out of bounds index
         _currentFilteredProfileIndex = 0;
-        return _profileCollection.Where(p => p.title == aTitleFilter).ToList();
+        return _profileCollection.Where(p => p.Title == aTitleFilter).ToList();
     }
 }
