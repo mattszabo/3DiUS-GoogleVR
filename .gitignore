@@ -47,3 +47,6 @@ Thumbs.db
 Thumbs.db.meta
 
 *.apk
+.idea/
+.vscode/
+

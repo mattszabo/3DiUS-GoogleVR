@@ -5,16 +5,16 @@ public class PreciseProfile : MonoBehaviour {
 
 	private enum PreciseProfileSections {
 		ProfileName, ProfileTitle, ProfileBio
-	};
+	}
 
 	private PreciseProfileModel _profileModel;
 
 	public void Init(PreciseProfileModel profile) {
 		_profileModel = profile;
-		SetProfilePicture (profile.ProfilePictureTex);
-		SetProfileObjectText (profile.Name, PreciseProfileSections.ProfileName.ToString());
-		SetProfileObjectText (profile.Title, PreciseProfileSections.ProfileTitle.ToString());
-		var bioString = profile.Bio.Substring(0, 265);
+		SetProfilePicture (profile.profile_picture_tex);
+		SetProfileObjectText (profile.name, PreciseProfileSections.ProfileName.ToString());
+		SetProfileObjectText (profile.title, PreciseProfileSections.ProfileTitle.ToString());
+		var bioString = profile.bio.Substring(0, 265);
 		bioString = Regex.Replace(bioString, ".{40}", "$0\n");
 		SetProfileObjectText (bioString, PreciseProfileSections.ProfileBio.ToString());
 	}
@@ -30,6 +30,6 @@ public class PreciseProfile : MonoBehaviour {
 	}	
 
 	public string GetPhotoUrl() {
-		return _profileModel.PhotoUrl;
+		return _profileModel.photo_url;
 	}
 }

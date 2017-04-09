@@ -3,12 +3,12 @@
 [System.Serializable]
 public class PreciseProfileModel {
 
-	public string Name;
-	public string Title;
-	public string Bio;
-	public string PhotoUrl;
-	public string AuthenticatedUrl;
-	public Texture2D ProfilePictureTex;
+	public string name;
+	public string title;
+	public string bio;
+	public string photo_url;
+	public string authenticated_url;
+	public Texture2D profile_picture_tex;
 
 	public static PreciseProfileModel CreateFromJson(string jsonString) {
 		return JsonUtility.FromJson<PreciseProfileModel> (jsonString);
