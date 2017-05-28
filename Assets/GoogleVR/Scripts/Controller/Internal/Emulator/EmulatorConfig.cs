@@ -45,7 +45,7 @@ namespace Gvr.Internal {
 
     // Set this value to match how the PC is connected to the phone that is
     // streaming gyro, accel, and touch events. Set to OFF if using Wifi instead.
-    public Mode PHONE_EVENT_MODE = Mode.OFF;
+    public Mode PHONE_EVENT_MODE = Mode.USB;
 
     /*----- Internal Parameters (should not require any changes). -----*/
 
@@ -53,7 +53,7 @@ namespace Gvr.Internal {
     public static readonly string USB_SERVER_IP = "127.0.0.1";
 
     // IP address of the phone, when connected to the PC via WiFi.
-    public static readonly string WIFI_SERVER_IP = "192.168.0.2"; //"192.168.43.1";
+    public static readonly string WIFI_SERVER_IP = "192.168.0.6";
   }
 }
 /// @endcond

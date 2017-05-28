@@ -32,7 +32,7 @@ public class PreciseProfileSelector : MonoBehaviour {
 
     private void UpdateProfilePicture() {
 		var tex = _filteredProfileCollection[_currentFilteredProfileIndex].profile_picture_tex;
-		var profilePicture = transform.FindChild("ProfilePicture").gameObject;
+		var profilePicture = transform.Find("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 

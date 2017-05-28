@@ -20,12 +20,12 @@ public class PreciseProfile : MonoBehaviour {
 	}
 
 	private void SetProfilePicture(Texture tex) {
-		var profilePicture = transform.FindChild("ProfilePicture").gameObject;
+		var profilePicture = transform.Find("ProfilePicture").gameObject;
 		profilePicture.GetComponent<Renderer> ().material.mainTexture = tex;
 	}
 
 	private void SetProfileObjectText(string objectText, string objectLabel) {
-		var profileBio = transform.FindChild(objectLabel+"Card").FindChild(objectLabel).gameObject;
+		var profileBio = transform.Find(objectLabel+"Card").Find(objectLabel).gameObject;
 		profileBio.GetComponent<TextMesh> ().text = objectText;
 	}	
 

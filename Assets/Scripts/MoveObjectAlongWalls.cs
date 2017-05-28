@@ -33,7 +33,7 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 	void Start () {
 		laserPointer = GameObject.Find ("Laser");
 		objectState = ObjectStates.NONE;
-		DeleteButtonRenderer = transform.FindChild("DeleteButton").GetComponent<Renderer>();
+		DeleteButtonRenderer = transform.Find("DeleteButton").GetComponent<Renderer>();
 		// gameObject.GetComponent<Renderer>().material = pointedAtMat;
 		// transform.FindChild("ProfilePicture").GetComponent<Renderer>().material = pointedAtMat;
 	}
@@ -45,9 +45,9 @@ public class MoveObjectAlongWalls : MonoBehaviour {
 			case ObjectStates.POINTED_AT:
 				break;
 			case ObjectStates.PICKED_UP:
-			 	Profiler.BeginSample("--> PICKED_UP sample");
+			 	UnityEngine.Profiling.Profiler.BeginSample("--> PICKED_UP sample");
 				SetActionFollowingPointer();
-				Profiler.EndSample();
+				UnityEngine.Profiling.Profiler.EndSample();
 				break;
 			case ObjectStates.FOLLOWING_POINTER:
 				FollowPointerAlongWall();
